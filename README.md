@@ -58,7 +58,7 @@ npm run dev
 # QUESTIONS AND ANSWERS:
 
 1. Handles user authentication:
-   Ans: A username/password style of authentication is a universal model, can be used for anything(social media, banking etc). Considering this, yes, a database is required. I would prefer to use MongoDB for this considering it's simplicity, accessibility and the amount of documentation/tools available for it. With MongoDB, I would use the mongoose ODM to facilitate database operation. My schema would be simple here, a name, email(username) and password. Schema would be:
+   A username/password style of authentication is a universal model, can be used for anything(social media, banking etc). Considering this, yes, a database is required. I would prefer to use MongoDB for this considering it's simplicity, accessibility and the amount of documentation/tools available for it. With MongoDB, I would use the mongoose ODM to facilitate database operation. My schema would be simple here, a name, email(username) and password. Schema would be:
 
    var UserSchema = new Schema({
    fullName: {
@@ -84,12 +84,12 @@ npm run dev
    CONS of NoSQL: When it comes to authentication, it is a popular practice to collect more user details while creating user profile. If we want establish relations between data, MongoDB is not a great choice. NoSQL databases are not really meant for storing relational data(using joins etc). SQL databases win here.
 
 2. Serves data to the client via an API:
-   Ans: I would go with a REST API. The amount of documentation around REST and the tools/libraries to support building a REST API is very vast. Also this is across all languages used for Application development. Other options like Pagination, Sorting, filtering and error handling in REST make it more attractive for using it to serve data to a client.
+   I would go with a REST API. The amount of documentation around REST and the tools/libraries to support building a REST API is very vast. Also this is across all languages used for Application development. Other options like Pagination, Sorting, filtering and error handling in REST make it more attractive for using it to serve data to a client.
    With express, the process of REST API development has also become easy. In Golang, GIN comes to the rescue while building a REST API. So, if at all there is no need of using something like GraphQL(API response is too huge and client doesn't need everything), REST API would be my chance.
 
 3. Scales to handle thousands of requests per second:
-   Ans: On top of my mind, I think using a Load Balancer is the right way to handle thousands of requests per second. This will make sure, one server isn't being stressed out and the processing is distributed across servers.
+   On top of my mind, I think using a Load Balancer is the right way to handle thousands of requests per second. This will make sure, one server isn't being stressed out and the processing is distributed across servers.
    Another choices for this is using a caching server to decrease io computation. But before all these, a proactive developer should profile the code with all the great tools available today and should improve efficiency.
 
 4. Provides real-time updates to clients as new data is available:
-   Ans: To do this, I would use a web-socket connection considering the tools(broswers) support it. Web-sockets ensure quick and seamless communication over a single connection.
+   To do this, I would use a web-socket connection considering the tools(broswers) support it. Web-sockets ensure quick and seamless communication over a single connection.
