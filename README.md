@@ -81,7 +81,7 @@ npm run dev
 
 2. Serves data to the client via an API:
    I would go with a REST API. The amount of documentation around REST and the tools/libraries to support building a REST API is very vast. Also this is available across all languages used for Application development. Other options like Pagination, Sorting, filtering and error handling in REST make it more attractive to use it to serve data to a client.
-   With express, the process of REST API development has also become easy. In Golang, GIN comes to the rescue while building a REST API. Many clients also exist to make use of data served by a REST API.
+   With express, the process of REST API development has also become easy. In Golang, GIN comes to the rescue while building a REST API. On the client side, there are great tools/libraries to make use of a REST API.
 
 3. Scales to handle thousands of requests per second:
    On top of my mind, I think using a Load Balancer is the right way to handle thousands of requests per second. This will make sure, one server isn't being stressed out and the processing is distributed across servers. Interally, a thread pool can be used to handle different requests. Another choice for this is using a caching server to decrease io computation. Auto-scaling can be used if the server is deployed on the cloud.
