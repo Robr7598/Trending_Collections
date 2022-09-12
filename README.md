@@ -8,7 +8,7 @@ WALLET DISCONNECTED
 WALLET CONNECTED
 ![Alt text](/screenshots/Connected.png?raw=true "Wallet Connected")
 
-# Use Case
+# Use Case:
 
 - If a user's ethereum wallet is connected, they should be able to view the Trending collections data.
 
@@ -36,7 +36,7 @@ npm run start
 npm run dev
 ```
 
-# Assumptions/Justifications
+# Assumptions/Justifications:
 
 - As mentioned in the assignment PDF, I have signed up on the QuickNode/IcyTools website to use my developer API Token to make the graphQl query.
 - Once user visits the website, they can see a simple screen to view the trending collections along with a fake button. Actual etherum connection checking requires detecting a provider to be installed(like metamask) on the browser. If the wallet is connected we can use web3 package to retrieve user connection data.
