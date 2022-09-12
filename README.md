@@ -58,13 +58,9 @@ npm run dev
 # QUESTIONS AND ANSWERS:
 
 1. Handles user authentication:
-   A username/password style of authentication is a universal model, can be used for anything(social media, banking etc). Considering this, yes, a database is required. I would prefer to use MongoDB for this considering it's simplicity, accessibility and the amount of documentation/tools available for it. With MongoDB, I would use the mongoose ODM to facilitate database operation. My schema would be simple here, a name, email(username) and password. Schema would be:
+   A username/password style of authentication is a universal model, can be used for anything(social media, banking etc). Considering this, yes, a database is required. I would prefer to use MongoDB for this considering its simplicity, accessibility and the amount of documentation/tools available for it. With MongoDB, I would use the mongoose ODM to facilitate database operations. My schema would be simple here, username(email) and a password. There will be a restriction on the no of characters and type of characters in the password, it'll be validated before being stored in the db. Schema would be:
 
    var UserSchema = new Schema({
-   fullName: {
-   type: String,
-   required: true
-   },
    email: {
    type: String,
    unique: true,
@@ -78,18 +74,17 @@ npm run dev
    },
    });
 
-   In order to keep passwords invisible, I will make sure passwords are hashed before being saved in the db(using a library like bcrypt with salt). Another important thing is to not use the password obtained from the user directly, for anything except hashing and storing in the db. For any other operation which requires user password, the password should be retrieved from db and then used. After this to keep the user authenticated while navigating to different pages/tabs, JWT based authentication can be used.
+   In order to keep passwords invisible, I will make sure passwords are hashed before being saved in the db(using a library like bcrypt with salt). Another important thing is to not use the password obtained from the user directly, for anything except hashing and storing in the db. For any other operation which requires user password, the hashed password should be retrieved from db and then used. After this to keep the user authenticated while navigating to different pages/tabs, JWT based authentication can be used.
 
-   PROS of NoSQL: For authentication, MongoDB is good because of it's scalability and easy maintenance(for db admin). It is also very simple to use.
-   CONS of NoSQL: When it comes to authentication, it is a popular practice to collect more user details while creating user profile. If we want establish relations between data, MongoDB is not a great choice. NoSQL databases are not really meant for storing relational data(using joins etc). SQL databases win here.
+   PROS of NoSQL: MongoDB is good because of its scalability and easy maintenance(for db admin). It is also very simple to use.
+   CONS of NoSQL: When it comes to authentication, it is a popular practice to collect more user details while creating a user profile. If we want to establish relations between data, MongoDB is not a great choice. NoSQL databases are not really meant for storing/querying relational data(using joins etc). SQL databases win here.
 
 2. Serves data to the client via an API:
-   I would go with a REST API. The amount of documentation around REST and the tools/libraries to support building a REST API is very vast. Also this is across all languages used for Application development. Other options like Pagination, Sorting, filtering and error handling in REST make it more attractive for using it to serve data to a client.
-   With express, the process of REST API development has also become easy. In Golang, GIN comes to the rescue while building a REST API. So, if at all there is no need of using something like GraphQL(API response is too huge and client doesn't need everything), REST API would be my chance.
+   I would go with a REST API. The amount of documentation around REST and the tools/libraries to support building a REST API is very vast. Also this is available across all languages used for Application development. Other options like Pagination, Sorting, filtering and error handling in REST make it more attractive to use it to serve data to a client.
+   With express, the process of REST API development has also become easy. In Golang, GIN comes to the rescue while building a REST API. Many clients also exist to make use of data served by a REST API.
 
 3. Scales to handle thousands of requests per second:
-   On top of my mind, I think using a Load Balancer is the right way to handle thousands of requests per second. This will make sure, one server isn't being stressed out and the processing is distributed across servers.
-   Another choices for this is using a caching server to decrease io computation. But before all these, a proactive developer should profile the code with all the great tools available today and should improve efficiency.
+   On top of my mind, I think using a Load Balancer is the right way to handle thousands of requests per second. This will make sure, one server isn't being stressed out and the processing is distributed across servers. Interally, a thread pool can be used to handle different requests. Another choice for this is using a caching server to decrease io computation. Auto-scaling can be used if the server is deployed on the cloud.
 
 4. Provides real-time updates to clients as new data is available:
-   To do this, I would use a web-socket connection considering the tools(broswers) support it. Web-sockets ensure quick and seamless communication over a single connection.
+   To do this, I would use a socket connection considering the client supports it. Web-sockets ensure quick and seamless communication over a single connection. In my current company, we use a web-socket to send real time data to the client.
