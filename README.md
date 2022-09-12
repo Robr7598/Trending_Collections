@@ -14,6 +14,12 @@ WALLET CONNECTED
 
 # Instructions to run:
 
+- Create a ".env" file at the root level of the project, and add your Icy Tools API Token in the following format,
+
+```
+NEXT_PUBLIC_ICY_TOKEN=<TOKEN>
+```
+
 - To install dependencies,
 
 ```
